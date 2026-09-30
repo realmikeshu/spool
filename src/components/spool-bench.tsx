@@ -288,7 +288,7 @@ export function SpoolBench() {
               }}
               rows={6}
               spellCheck={false}
-              placeholder={"Paste one link per line\nhttps://www.instagram.com/reel/\u2026\nhttps://www.tiktok.com/@\u2026/video/\u2026\nhttps://www.youtube.com/shorts/\u2026"}
+              placeholder={"Paste one link per line\nhttps://www.instagram.com/reel/…\nhttps://www.tiktok.com/@…/video/…\nhttps://www.youtube.com/shorts/…"}
               className="mt-2 w-full resize-y rounded-2xl border border-border bg-bg px-4 py-3 text-base leading-normal text-fg outline-none placeholder:text-muted focus:border-primary"
             />
             <div className="flex flex-wrap items-center gap-3 px-2 py-3">
@@ -296,7 +296,7 @@ export function SpoolBench() {
                 {parsed.urls.length === 0
                   ? "Instagram Reels, video posts, TikToks, and YouTube Shorts."
                   : `${parsed.urls.length} ${parsed.urls.length === 1 ? "link" : "links"}`}
-                {parsed.truncated ? " \u00b7 first 12 only" : ""}
+                {parsed.truncated ? " · first 12 only" : ""}
               </p>
               <div className="ml-auto flex items-center gap-2">
                 {running ? (
@@ -395,7 +395,7 @@ export function SpoolBench() {
                   >
                     <span className="block text-xs tracking-wide text-muted">
                       <span className="uppercase">{platformLabel(item.platform)}</span>
-                      {` \u00b7 @${item.handle}`}
+                      {` · @${item.handle}`}
                     </span>
                     <span className="mt-1 block line-clamp-2 text-sm">{item.title}</span>
                   </button>
@@ -447,7 +447,7 @@ function ClipCard({
           <div>
             <p className="text-xs uppercase tracking-wide text-muted">
               {platformLabel(clip.platform)}
-              {duration ? <span className="tabular-nums"> \u00b7 {duration}</span> : null}
+              {duration ? <span className="tabular-nums"> · {duration}</span> : null}
             </p>
             <h3 className="mt-13 font-display text-card text-balance">{clip.title}</h3>
             <p className="mt-1 text-sm text-muted">@{clip.handle}</p>
@@ -618,7 +618,7 @@ function StudyBlock({
     <div className={accent ? "border-l-2 border-primary pl-3" : "border-l-2 border-border pl-3"}>
       <p className={accent ? "text-xs uppercase tracking-wide text-primary" : "text-xs uppercase tracking-wide text-muted"}>
         {label}
-        {meta ? <span className="text-muted"> \u00b7 {meta}</span> : null}
+        {meta ? <span className="text-muted"> · {meta}</span> : null}
       </p>
       <p className="mt-1 text-sm whitespace-pre-wrap text-pretty">{children}</p>
     </div>
