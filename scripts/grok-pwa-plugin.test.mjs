@@ -23,8 +23,14 @@ const TEMPLATE_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 test("injects before </head>", () => {
   const out = injectGrokPwaHead("<html><head><title>x</title></head><body></body></html>");
-  assert.match(out, /rel=\"manifest\"/);
+  assert.match(out, /rel="manifest"/);
   assert.match(out, /apple-touch-icon/);
   assert.match(out, /grok-app-builder\/extensions\.js/);
   assert.ok(out.indexOf("manifest") < out.indexOf("</head>"));
+});
+
+test("vite plugin bakes og identity as a virtual module", () => {
+  const plugin = readFileSync(join(TEMPLATE_ROOT, "scripts/grok-pwa-plugin.mjs"), "utf8");
+  assert.match(plugin, /virtual:grok-og-identity/);
+  assert.match(plugin, /snapshotOgIdentity/);
 });
