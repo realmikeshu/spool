@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --color-bg: #14120e;
+  --color-surface: #221e19;
+  --color-fg: #f3efe6;
+  --color-muted: #a89b8c;
+  --color-primary: #e2a15a;
+  --color-border: #3a332b;
+  /* Fibonacci steps, the whole-number cousin of 1.618: 13, 21, 34, 55. */
+  --spacing-13: 0.8125rem;
+  --spacing-21: 1.3125rem;
+  --spacing-34: 2.125rem;
+  --spacing-55: 3.4375rem;
+  --text-side: 1.3125rem;
+  --text-side--line-height: 1.25;
+  --text-card: 1.625rem;
+  --text-card--line-height: 1.2;
+  --text-mast: 2.125rem;
+  --text-mast--line-height: 1.05;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled),
+  summary,
+  a[href] {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  img,
+  video {
+    outline: 1px solid rgba(243, 239, 230, 0.1);
+    outline-offset: -1px;
+  }
+}
+
+.panel {
+  box-shadow: 0 0 0 1px rgba(243, 239, 230, 0.08);
+}
+
+/* Main column is 1.618 × the side column. One column below the laptop width. */
+.desk {
+  display: grid;
+  align-items: start;
+  gap: var(--spacing-21);
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: var(--spacing-21) 1rem var(--spacing-34);
+}
+
+.clip-frame {
+  aspect-ratio: 9 / 16;
+  width: 100%;
+  object-fit: contain;
+  background: var(--color-bg);
+}
+
+@media (min-width: 1024px) {
+  .desk {
+    grid-template-columns: minmax(0, 1.618fr) minmax(16rem, 1fr);
+    gap: var(--spacing-34);
+    padding: var(--spacing-34);
+  }
+
+  .desk-side {
+    position: sticky;
+    top: var(--spacing-21);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
